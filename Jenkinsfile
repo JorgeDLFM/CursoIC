@@ -1,5 +1,8 @@
-Fecha_Nacimiento = 1953
-Anio_Actual = new Date().getYear()
+import java.text.SimpleDateFormat
+
+Fecha_Nacimiento = '20/02/1953'
+Anio_Actual = new Date().getYear().toInteger()
+
 pipeline
 {
     agent any
@@ -12,9 +15,11 @@ pipeline
             {
                 script
                 {
-                  println (Fecha_Nacimiento)
+                  fecha = new SimpleDateFormat("dd/MM/yyyy").parse(Fecha_Nacimiento)
+                  anio_fecha = fecha.getYear().toInteger()
+                  println (anio_fecha)
                   println (Anio_Actual)
-                  Edad = 1900 + Anio_Actual - Fecha_Nacimiento
+                  Edad = Anio_Actual - anio_fecha
                   println (Edad)
                   cadena = "Edad: " + Edad
                   println (cadena)
